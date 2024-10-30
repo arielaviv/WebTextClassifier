@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+mainClassName = 'com.example.webtextclassifier.UrlCategorizationApi'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.jsoup:jsoup:1.15.4' // HTML parsing for text retrieval
+    testImplementation 'junit:junit:4.13.2' // For testing
+    implementation 'com.sparkjava:spark-core:2.9.4' // For Spark Java
+    implementation 'com.google.code.gson:gson:2.8.9' // For JSON handling
+    implementation 'org.slf4j:slf4j-simple:1.7.36'
+}
