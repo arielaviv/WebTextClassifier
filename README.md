@@ -1,84 +1,86 @@
-# Web Text Classifier
+# WebTextClassifier
 
-A Java-based REST API for URL text retrieval and categorization. This API fetches text content from given URLs, removes HTML tags, and categorizes the content based on predefined keyword categories. Built with SparkJava and Jsoup, it provides a simple yet robust backend solution for URL text analysis.
+A Java-based web text categorization application that categorizes URLs based on predefined keywords using a REST API. The project is containerized using Docker for easy deployment.
 
 ## Features
-- **Text Retrieval**: Fetches and cleans text from URLs, removing HTML tags.
-- **Categorization**: Matches the text against predefined categories based on keywords.
-- **REST API**: Provides a POST endpoint for categorization requests.
+- Categorizes web page content based on predefined categories.
+- Provides a REST API for URL categorization.
+- Dockerized for seamless deployment.
 
-## Prerequisites
-- **Java 8** or higher
-- **Gradle** for building the project
-- **Git** for version control (if you're cloning the repository)
+## Technologies Used
+- **Java 8**
+- **Spark Framework** for REST API
+- **Gson** for JSON processing
+- **Jsoup** for HTML parsing
+- **Docker** for containerization
 
-## Installation
+## Getting Started
 
+### Prerequisites
+- Java 8+
+- Docker (optional, if running with Docker)
+- Gradle
+
+### Installation
 1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/your-username/WebTextClassifier.git
-   cd WebTextClassifier
+   ```
+   git clone https://github.com/yourusername/WebTextClassifier.git
+    ```
+### Navigate to the project's directory:
+   ```
+      cd WebTextClassifier
+   ```
+
+### Build the project:
+To build the application, run:
+```
+ gradle build
+```
+
+## Running the Application
+### Run Locally
+Start the application:
+```
+   gradle run
+```
+
+### Run with Docker
+1. Build the Docker image:
+```
+   docker build -t webtextclassifier .
+``` 
+3. Run the Docker image:
+   ```
+   docker run -p 4567:4567 webtextclassifier
+   ```
    
-# Build the project:
-bash
-Copy code
-gradle build
-Run the application:
-
-bash
-Copy code
-gradle run -PmainClass=com.example.webtextclassifier.UrlCategorizationApi
-API Usage
-Endpoint
-POST /categorize
-Request Body (JSON)
-Submit a JSON object with a list of URLs:
-
+4. Access the API: You can access the API at http://localhost:4567/categorize in the same way as the local setup.
+   
+## API Documentation
+Endpoint: /categorize
+Method: POST
+Description: Categorizes content from the provided URLs based on predefined keywords.
+Request Body:
 json
-Copy code
+```
 {
-  "urls": [
-    "https://www.example.com",
-    "https://www.another-example.com"
-  ]
+  "urls": ["<URL1>", "<URL2>", ...]
 }
-Response
-The response will contain each URL with its matched categories:
+```
 
+Response: JSON object with each URL as a key and a list of categories as the value.
+
+Example response:
 json
-Copy code
+```
 {
-  "https://www.example.com": ["Category1", "Category2"],
-  "https://www.another-example.com": []
+  "https://www.bbc.com": ["News", "World"],
+  "https://www.nba.com/news/heat-unveil-statue-of-dwyane-wade-at-kaseya-center-in-miami": ["Basketball"]
 }
-Example Usage with cURL
-bash
-Copy code
-curl -X POST http://localhost:4567/categorize \
--H "Content-Type: application/json" \
--d '{
-  "urls": [
-    "https://www.bbc.com",
-    "https://www.nba.com/news/some-article"
-  ]
-}'
+```
 
-# Docker (Optional)
-To run the application in a Docker container:
+## Contributing
+If you would like to contribute, feel free to fork the repository and make changes. Pull requests are welcome.
 
-# Build the Docker image:
-bash
-Copy code
-docker build -t webtextclassifier .
-Run the container:
-bash
-Copy code
-docker run -p 4567:4567 webtextclassifier
-
-# License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-Future Improvements
-Expand categorization to support more complex patterns.
-Add monitoring and logging for production use.
-Enhance keyword matching to handle synonyms.
+## License
+This project is licensed under the MIT License.
